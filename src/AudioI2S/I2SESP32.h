@@ -75,6 +75,13 @@ class I2SBase {
       return cfg;
     }
 
+    void setSampleRate(int rate)
+    {
+        LOGD("setSampleRate %d", rate);
+        i2s_set_sample_rates((i2s_port_t)cfg.port_no, rate);
+        cfg.sample_rate = rate;
+    }
+    
     /// writes the data to the I2S interface
     size_t writeBytes(const void *src, size_t size_bytes){
       LOGD(LOG_METHOD);

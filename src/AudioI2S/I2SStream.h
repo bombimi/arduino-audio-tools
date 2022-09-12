@@ -115,8 +115,15 @@ class I2SStream : public AudioStream {
                 cfg.channels = info.channels;
                 cfg.logInfo();
 
-                i2s.end();
-                i2s.begin(cfg);        
+	            if (cfg.channels == info.channels && cfg.bits_per_sample == info.bits_per_sample)
+	            {
+	                i2s.setSampleRate(cfg.sample_rate);
+	            }
+	            else
+	            {
+	                i2s.end();
+	                i2s.begin(cfg);
+	            }       
             }
         }
 
